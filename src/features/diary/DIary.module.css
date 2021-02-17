@@ -1,0 +1,18 @@
+.diary {
+    background-color: white;
+    max-width: 100%;
+    border: 1px solid lightgray;
+    margin-bottom: 10px;
+}
+.diary_time {
+    display: flex;
+    align-items: center;
+}
+.diary_foodname {
+  display: flex;
+  align-items: center;
+}
+.diary_memo {
+  display: flex;
+  align-items: center;
+}
