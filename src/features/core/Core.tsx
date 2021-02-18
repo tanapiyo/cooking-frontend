@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Auth from "../auth/Auth";
 
 import styles from "./Core.module.css";
@@ -37,6 +37,9 @@ const Core: React.FC = () => {
   const recipes = useSelector(selectRecipes);
   const isLoadingAuth = useSelector(selectIsLoadingAuth);
 
+  const [menu, setMenu] = useState();
+  const [buyList, setBuyList] = useState();
+
   useEffect(() => {
     const fetchBootLoader = async () => {
       if (localStorage.localJWT) {
@@ -53,6 +56,18 @@ const Core: React.FC = () => {
     };
     fetchBootLoader();
   }, [dispatch]);
+
+  const makeMenu = () => {
+    //recipesの中でmain,sub,soupをfilter
+
+    const min = Math.ceil(0);
+    const max = Math.floor(recipes.length);
+    const randInt1 = Math.floor(Math.random() * (max - min) + min);
+    const randInt2 = Math.floor(Math.random() * (max - min) + min);
+    const randInt3 = Math.floor(Math.random() * (max - min) + min);
+    setMenu([recipes[0], ])
+    setBuyList
+  }
 
   return (
     <div>
@@ -98,22 +113,37 @@ const Core: React.FC = () => {
         {/* <> */}
 
           <div className={styles.core_posts}>
-            <Grid container spacing={4}>
-              {posts//reduxからもってきたpost一覧
-                .slice(0)
-                .reverse()
-                .map((post) => (
-                  <Grid key={post.id} item xs={12} md={4}>
-                    <Post
-                      postId={post.id}
-                      title={post.title}
-                      loginId={profile.userProfile}
-                      userPost={post.userPost}
-                      imageUrl={post.img}
-                      liked={post.liked}
-                    />
-                  </Grid>
-                ))}
+            <Grid container xs={12} color="warning" style={{ margin: 20 }} >
+              <h3>ルール</h3>
+              <p>1. 3日ごとに献立を立てる</p>
+              <p>2. 一汁二菜</p>
+              <p>3. メインは3日間でかぶらないように、野菜はかぶるように</p>
+            </Grid>
+
+            <Grid container xs={4} color="error" >
+              <h3>主菜</h3>
+              {menu &&
+                <h3>{menu[0].foodName}</h3>
+              }
+            </Grid>
+            <Grid container xs={4} color="success" >
+              <h3>副菜</h3>
+              {menu &&
+                <h3>{menu[1].foodName}</h3>
+              }
+            </Grid>
+            <Grid container xs={4} color="secondary" >
+              <h3>汁物</h3>
+              {menu &&
+                <h3>{menu[2].foodName}</h3>
+              }
+            </Grid>
+
+            <Grid container xs={12} style={{ margin: 20 }} >
+              <h3>買うもの</h3>
+              {buyList && 
+                {buyList}
+              }
             </Grid>
           </div>
 

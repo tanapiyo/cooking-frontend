@@ -8,6 +8,7 @@ export const store = configureStore({
     auth: authReducer,
     recipe: recipeReducer,
     diary: diaryReducer,
+
   },
 });
 

@@ -2,13 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import axios from "axios";
 import { PROPS_NEWDIARY } from "../types";
-// import { PROPS_NEWPOST, PROPS_LIKED, PROPS_COMMENT } from "../types"; TODO::買い替え
 
-const apiUrlPost = `${process.env.REACT_APP_DEV_API_URL}api/diary/`;
+const apiUrlDiary = `${process.env.REACT_APP_DEV_API_URL}api/diary/`;
 
 //日記一覧
 export const fetchAsyncGetDiarys = createAsyncThunk("post/get", async () => {
-  const res = await axios.get(apiUrlPost, {
+  const res = await axios.get(apiUrlDiary, {
     headers: {
       Authorization: `JWT ${localStorage.localJWT}`,
     },
@@ -20,7 +19,7 @@ export const fetchAsyncGetDiarys = createAsyncThunk("post/get", async () => {
 export const fetchAsyncNewDiary = createAsyncThunk(
   "post/post",
   async (newPost: PROPS_NEWDIARY) => {
-    const res = await axios.post(apiUrlPost, newPost, {
+    const res = await axios.post(apiUrlDiary, newPost, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `JWT ${localStorage.localJWT}`,
