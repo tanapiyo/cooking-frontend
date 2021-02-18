@@ -45,7 +45,6 @@ import NewDiary from "./NewDiary";
 const DiaryCore: React.FC = () => {
   //reduxのstoreからよぶ
   const dispatch: AppDispatch = useDispatch();
-  const recipes = useSelector(selectRecipes);
   const diaries = useSelector(selectDiarys)
   const isLoadingAuth = useSelector(selectIsLoadingAuth);
 
@@ -127,7 +126,7 @@ const DiaryCore: React.FC = () => {
                   <Grid key={diary.id} item xs={12}>
                     <Diary
                       foodName={diary.foodName}
-                      date={diary.date}
+                      date={diary.date.toString()}
                       memo={diary.memo}
                       userDiary={diary.userDiary}
                     />

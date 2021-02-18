@@ -6,8 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
 
-import { PROPS_DIARY } from "../types";
-import { selectDiarys } from "./diarySlice";
+import { PROPS_DIARY_DISP } from "../types";
 
 const useStyles = makeStyles((theme) => ({
   small: {
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Diary: React.FC<PROPS_DIARY> = ({
+const Diary: React.FC<PROPS_DIARY_DISP> = ({
 foodName,
 userDiary,
 date,

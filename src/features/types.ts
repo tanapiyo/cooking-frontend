@@ -12,8 +12,8 @@ export interface File extends Blob {
   export interface PROPS_NEWRECIPE {
     foodName: string;
     vegetables: number[];
-    main: number[];
-    recipeKind: number[];
+    main: number;
+    recipeKind: number;
     memo: string;
     ajitsuke: string;
     cookingTime: number;
@@ -31,6 +31,13 @@ export interface File extends Blob {
   export interface PROPS_DIARY{
     foodName: string;
     date: Date | null;
+    memo: string;
+    userDiary: number;
+  }
+
+  export interface PROPS_DIARY_DISP{
+    foodName: string;
+    date: string;
     memo: string;
     userDiary: number;
   }

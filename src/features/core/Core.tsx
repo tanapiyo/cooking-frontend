@@ -39,8 +39,8 @@ const Core: React.FC = () => {
   const recipes = useSelector(selectRecipes);
   const isLoadingAuth = useSelector(selectIsLoadingAuth);
 
-  const [menu, setMenu] = useState();
-  const [buyList, setBuyList] = useState();
+  const [menu, setMenu] = useState<any[]>([])
+  const [buyList, setBuyList] = useState<any[]>([])
 
   useEffect(() => {
     const fetchBootLoader = async () => {
@@ -61,14 +61,24 @@ const Core: React.FC = () => {
 
   const makeMenu = () => {
     //recipesの中でmain,sub,soupをfilter
-
-    const min = Math.ceil(0);
-    const max = Math.floor(recipes.length);
-    const randInt1 = Math.floor(Math.random() * (max - min) + min);
-    const randInt2 = Math.floor(Math.random() * (max - min) + min);
-    const randInt3 = Math.floor(Math.random() * (max - min) + min);
-    setMenu([recipes[0], ])
-    setBuyList
+    const sub = recipes.filter((recipe) => {
+        return recipe.recipeKind === 0;
+      });
+    const soup = recipes.filter((recipe) => {
+        return recipe.recipeKind === 1;
+      });
+    const main = recipes.filter((recipe) => {
+        return recipe.recipeKind === 2;
+      });
+    const randIntMain = Math.floor(Math.random() * (main.length));
+    const randIntSub = Math.floor(Math.random() * (sub.length));
+    const randIntSoup = Math.floor(Math.random() * (soup.length));
+    setMenu([main[randIntMain],sub[randIntSub],soup[randIntSoup]])
+    const buyList = main[randIntMain].vegetables.concat(
+        sub[randIntSub].vegetables, soup[randIntSoup].vegetables,
+        main[randIntMain].main, sub[randIntSub].main, soup[randIntSoup].main
+    );
+    setBuyList(buyList)
   }
 
   return (
@@ -121,10 +131,13 @@ const Core: React.FC = () => {
               <p>2. 一汁二菜</p>
               <p>3. メインは3日間でかぶらないように、野菜はかぶるように</p>
             </Grid>
-
+            <Grid container xs={12}>
+                <Button color="primary"
+                 onClick={() => {makeMenu()}}>Primary</Button>
+            </Grid>
             <Grid container xs={4} color="error" >
               <h3>主菜</h3>
-              {menu &&
+              {menu && menu[0] &&
                 <h3>{menu[0].foodName}</h3>
               }
             </Grid>
