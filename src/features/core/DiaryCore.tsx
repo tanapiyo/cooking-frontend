@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
 
 import { withStyles } from "@material-ui/core/styles";
+import {Link} from 'react-router-dom';
+
 import {
   Button,
   Grid,
@@ -131,6 +133,17 @@ const DiaryCore: React.FC = () => {
                     />
                   </Grid>
                 ))}
+            </Grid>
+            <Grid container xs={12} style={{ margin: 20 }} >
+                <Link to="/">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                    >
+                        献立を作る
+                    </Button>
+                </Link>
             </Grid>
           </div>
         {/* </> */}

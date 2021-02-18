@@ -5,6 +5,8 @@ import styles from "./Core.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
 
+import {Link} from 'react-router-dom';
+
 // import { withStyles } from "@material-ui/core/styles";
 import {
     Button,
@@ -144,6 +146,18 @@ const Core: React.FC = () => {
               {buyList && 
                 {buyList}
               }
+            </Grid>
+
+            <Grid container xs={12} style={{ margin: 20 }} >
+                <Link to="/diary">
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        size="large"
+                    >
+                        日記をかく
+                    </Button>
+                </Link>
             </Grid>
           </div>
 
