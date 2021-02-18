@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./Post.module.css";
+import styles from "./Diary.module.css";
 
 import { makeStyles } from "@material-ui/core/styles";
 

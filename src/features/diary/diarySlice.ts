@@ -31,7 +31,7 @@ export const fetchAsyncNewDiary = createAsyncThunk(
 
 
 export const diarySlice = createSlice({
-  name: "",
+  name: "diary",
   initialState: {
     isLoadingDiary: false,
     openNewDiary: false,

@@ -67,7 +67,7 @@ const NewDiary: React.FC = () => {
             label="CookingDay"
             type="date"
             defaultValue="2021-01-01"
-            onChange={(e) => setDate(e.target.value)}
+            onChange={(e) => setDate(new Date(e.target.value))}
             InputLabelProps={{
             shrink: true,
             }}

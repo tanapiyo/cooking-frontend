@@ -143,13 +143,13 @@ const Core: React.FC = () => {
             </Grid>
             <Grid container xs={4} color="success" >
               <h3>副菜</h3>
-              {menu &&
+              {menu && menu[1] &&
                 <h3>{menu[1].foodName}</h3>
               }
             </Grid>
             <Grid container xs={4} color="secondary" >
               <h3>汁物</h3>
-              {menu &&
+              {menu && menu[2] &&
                 <h3>{menu[2].foodName}</h3>
               }
             </Grid>
@@ -157,7 +157,8 @@ const Core: React.FC = () => {
             <Grid container xs={12} style={{ margin: 20 }} >
               <h3>買うもの</h3>
               {buyList && 
-                {buyList}
+                // {buyList}
+                <p>hi</p>
               }
             </Grid>
 

@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./App.module.css";
 import Core from "./features/core/Core";
-import DiaryCore from "./features/core/DicaryCore";
+import DiaryCore from "./features/core/DiaryCore";
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
