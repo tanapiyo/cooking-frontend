@@ -32,6 +32,7 @@ import {
 
 //material-uiのavartarからコピー（アイコンの右下にログインしていると緑色）
 
+
 ////////////////////////////
 const Core: React.FC = () => {
   //reduxのstoreからよぶ
@@ -59,26 +60,57 @@ const Core: React.FC = () => {
     fetchBootLoader();
   }, [dispatch]);
 
+  const getName = (element: { vegeName: any; mainDishName: any; }) => {
+    if(element.vegeName){
+        return element.vegeName
+    }else{
+        return element.mainDishName
+    }
+  }
+
   const makeMenu = () => {
     //recipesの中でmain,sub,soupをfilter
     const sub = recipes.filter((recipe) => {
-        return recipe.recipeKind === 0;
-      });
-    const soup = recipes.filter((recipe) => {
-        return recipe.recipeKind === 1;
+        return recipe.recipeKind === 3;
       });
     const main = recipes.filter((recipe) => {
+        return recipe.recipeKind === 1;
+      });
+    const soup = recipes.filter((recipe) => {
         return recipe.recipeKind === 2;
       });
     const randIntMain = Math.floor(Math.random() * (main.length));
     const randIntSub = Math.floor(Math.random() * (sub.length));
     const randIntSoup = Math.floor(Math.random() * (soup.length));
     setMenu([main[randIntMain],sub[randIntSub],soup[randIntSoup]])
-    const buyList = main[randIntMain].vegetables.concat(
-        sub[randIntSub].vegetables, soup[randIntSoup].vegetables,
-        main[randIntMain].main, sub[randIntSub].main, soup[randIntSoup].main
-    );
-    setBuyList(buyList)
+    // console.log(recipes);
+    // console.log(main);
+    // console.log(sub);
+    // console.log(soup);
+
+    //make buyList
+    var buyList: React.SetStateAction<any[]> = [];
+
+    if(main[randIntMain]){
+        buyList = buyList.concat(main[randIntMain].vegetables ,[main[randIntMain].main]);
+    }
+    if(sub[randIntSub]){
+        buyList = buyList.concat(sub[randIntSub].vegetables,[sub[randIntSub].main]);
+    };
+    if(soup[randIntSoup]){
+        buyList = buyList.concat(soup[randIntSoup].vegetables, [soup[randIntSoup].main]);
+    };
+    console.log(buyList);
+
+    setBuyList(buyList);
+
+    buyList.forEach(element => {
+        if(element.vegeName){
+
+        }else{
+            //mainDishName
+        }
+    });
   }
 
   return (
@@ -132,8 +164,15 @@ const Core: React.FC = () => {
               <p>3. メインは3日間でかぶらないように、野菜はかぶるように</p>
             </Grid>
             <Grid container xs={12}>
-                <Button color="primary"
-                 onClick={() => {makeMenu()}}>Primary</Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        onClick={() => {makeMenu()}}
+                    >
+                        つくる
+                    </Button>
+
             </Grid>
             <Grid container xs={4} color="error" >
               <h3>主菜</h3>
@@ -156,10 +195,9 @@ const Core: React.FC = () => {
 
             <Grid container xs={12} style={{ margin: 20 }} >
               <h3>買うもの</h3>
-              {buyList && 
-                // {buyList}
-                <p>hi</p>
-              }
+              {buyList.map((buy) => (
+                <p>{getName(buy)}</p>
+                ))}
             </Grid>
 
             <Grid container xs={12} style={{ margin: 20 }} >

@@ -3,7 +3,7 @@ import { RootState } from "../../app/store";
 import axios from "axios";
 import { PROPS_NEWRECIPE } from "../types";
 
-const apiUrlRecipe = `${process.env.REACT_APP_DEV_API_URL}api/recipe/`;
+const apiUrlRecipe = `${process.env.REACT_APP_DEV_API_URL}api/recipe/?expand=vegetables&expand=main`;
 
 
 //recipe一覧取得

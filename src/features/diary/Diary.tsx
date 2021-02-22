@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Diary: React.FC<PROPS_DIARY_DISP> = ({
+//const Diary: React.FC<> = ({
 foodName,
 userDiary,
 date,
@@ -27,7 +28,7 @@ memo,
 //   const diary = diaries.filter((diary) => {
 //     return diary.userDiary === current.user;
 //   });
-
+  
   if (foodName) {//レシピ名があるときは描画、なければnull
     return (
       <div className={styles.diary}>
@@ -43,7 +44,7 @@ memo,
       </div>
     );
   };
-  return null;
+  return <p>{date}</p>;
 };
 
 export default Diary;

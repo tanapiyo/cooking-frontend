@@ -23,10 +23,6 @@ import {
   resetOpenSignUp,
 } from "../auth/authSlice";
 
-import {
-  selectRecipes,
-  fetchAsyncGetRecipe,
-} from "../recipe/recipeSlice";
 
 import {
     selectDiarys,
@@ -59,11 +55,12 @@ const DiaryCore: React.FC = () => {
         //   return null;
         // }
         //表示するものを全部取得
-        await dispatch(fetchAsyncGetRecipe());
+        await dispatch(fetchAsyncGetDiarys());
       }
     };
     fetchBootLoader();
   }, [dispatch]);
+
 
   return (
     <div>
@@ -120,11 +117,11 @@ const DiaryCore: React.FC = () => {
           <div className={styles.core_posts}>
             <Grid container spacing={4}>
               {diaries//reduxからもってきたpost一覧
-                .slice(0)
-                .reverse()
+                //.slice(0).reverse()
                 .map((diary) => (
-                  <Grid key={diary.id} item xs={12}>
+                  <Grid key={diary.foodName} item xs={12}>
                     <Diary
+                    //diary={diary}
                       foodName={diary.foodName}
                       date={diary.date.toString()}
                       memo={diary.memo}

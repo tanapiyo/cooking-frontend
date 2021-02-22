@@ -37,7 +37,6 @@ export const diarySlice = createSlice({
     openNewDiary: false,
     diaries: [
       {
-        id: 0,
         foodName: "",
         userDiary: 0,
         date: "",
@@ -63,13 +62,13 @@ export const diarySlice = createSlice({
     builder.addCase(fetchAsyncGetDiarys.fulfilled, (state, action) => {
       return {
         ...state,
-        posts: action.payload,
+        diaries: action.payload,
       };
     });
     builder.addCase(fetchAsyncNewDiary.fulfilled, (state, action) => {
       return {
         ...state,
-        posts: [...state.diaries, action.payload],
+        diaries: [...state.diaries, action.payload],
       };
     });
   },
