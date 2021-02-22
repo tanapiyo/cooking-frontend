@@ -73,6 +73,14 @@ const DiaryCore: React.FC = () => {
         <div className={styles.core_logout}>
             {(isLoadingAuth) && <CircularProgress />}
             <Button
+            className={styles.core_btnModal}
+            onClick={() => {
+              dispatch(setOpenNewDiary());
+            }}
+            >
+            日記を書く
+            </Button>
+            <Button
             onClick={() => {
                 localStorage.removeItem("localJWT");
                 dispatch(resetOpenNewDiary());
@@ -81,13 +89,14 @@ const DiaryCore: React.FC = () => {
             >
             Logout
             </Button>
-              <button
+              {/* <button
                 className={styles.core_btnModal}
                 onClick={() => {
                   dispatch(resetOpenNewDiary());
                 }}
               >
-              </button>
+              日記を書く
+              </button> */}
         </div>
           {/* </> */}
         {/* ) : (//nicknameないときはsignup/login */}
